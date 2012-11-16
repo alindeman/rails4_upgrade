@@ -36,6 +36,10 @@ module RailsUpgrade4
       @dependencies
     end
 
+    def [](gem_name)
+      @gems[gem_name]
+    end
+
     def dependencies_for(gem_name)
       @specs[gem_name]
     end

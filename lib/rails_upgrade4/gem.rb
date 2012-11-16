@@ -23,6 +23,10 @@ module RailsUpgrade4
         if dependency.is_rails? && !dependency.satisfied_by_rails4?
           incompatibilities << Incompatibility.new(dependency, chain)
         end
+
+        unless dependency.is_rails?
+          incompatibilities.concat(@gemfile[dependency.name].incompatibilities(chain))
+        end
       }
 
       incompatibilities
