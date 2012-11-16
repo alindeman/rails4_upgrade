@@ -1,5 +1,5 @@
 require "rails_upgrade4/version"
+require "rails_upgrade4/gemfile"
 
 module RailsUpgrade4
-  # Your code goes here...
 end
