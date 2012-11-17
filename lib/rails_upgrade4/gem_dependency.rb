@@ -13,6 +13,10 @@ module RailsUpgrade4
       @dependency.name
     end
 
+    def requirement
+      @dependency.requirement
+    end
+
     def satisfied_by?(version)
       @dependency.requirement.satisfied_by?(version)
     end

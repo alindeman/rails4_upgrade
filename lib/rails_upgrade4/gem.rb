@@ -11,6 +11,10 @@ module RailsUpgrade4
       @dependency.name
     end
 
+    def version
+      @dependency.version
+    end
+
     def dependencies
       @gemfile.dependencies_for(name)
     end
@@ -25,7 +29,8 @@ module RailsUpgrade4
         end
 
         unless dependency.is_rails?
-          incompatibilities.concat(@gemfile[dependency.name].incompatibilities(chain))
+          next unless gem = @gemfile[dependency.name]
+          incompatibilities.concat(gem.incompatibilities(chain))
         end
       }
 

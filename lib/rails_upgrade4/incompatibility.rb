@@ -1,9 +1,9 @@
 module RailsUpgrade4
   class Incompatibility
-    attr_reader :gem, :dependency_chain
+    attr_reader :dependency, :dependency_chain
 
-    def initialize(gem, dependency_chain)
-      @gem              = gem
+    def initialize(dependency, dependency_chain)
+      @dependency       = dependency
       @dependency_chain = dependency_chain
     end
   end
