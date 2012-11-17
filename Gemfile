@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in rails_upgrade4.gemspec
+# Specify your gem's dependencies in rails4_upgrade.gemspec
 gemspec

@@ -1,6 +1,6 @@
-require "rails_upgrade4/incompatibility"
+require "rails4_upgrade/incompatibility"
 
-module RailsUpgrade4
+module Rails4Upgrade
   class Gem
     def initialize(gemfile, dependency)
       @gemfile      = gemfile

@@ -1,4 +1,4 @@
-module RailsUpgrade4
+module Rails4Upgrade
   module Output
     class Terminal
       def initialize(gemfile)

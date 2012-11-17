@@ -6,7 +6,7 @@ TODO: Write a gem description
 
 Add this line to your application's Gemfile:
 
-    gem 'rails_upgrade4'
+    gem 'rails4_upgrade'
 
 And then execute:
 
@@ -14,7 +14,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install rails_upgrade4
+    $ gem install rails4_upgrade
 
 ## Usage
 

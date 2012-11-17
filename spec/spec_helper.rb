@@ -1,5 +1,5 @@
 require "vcr"
-require_relative "../lib/rails_upgrade4"
+require_relative "../lib/rails4_upgrade"
 
 RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true

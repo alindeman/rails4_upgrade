@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'rails_upgrade4/version'
+require 'rails4_upgrade/version'
 
 Gem::Specification.new do |gem|
-  gem.name          = "rails_upgrade4"
-  gem.version       = RailsUpgrade4::VERSION
+  gem.name          = "rails4_upgrade"
+  gem.version       = Rails4Upgrade::VERSION
   gem.authors       = ["Andy Lindeman"]
   gem.email         = ["alindeman@gmail.com"]
   gem.description   = %q{Upgrade assistant for transitioning applications from Rails 3 to Rails 4}

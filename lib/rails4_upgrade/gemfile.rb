@@ -1,8 +1,8 @@
 require "set"
-require "rails_upgrade4/gem_dependency"
-require "rails_upgrade4/gem"
+require "rails4_upgrade/gem_dependency"
+require "rails4_upgrade/gem"
 
-module RailsUpgrade4
+module Rails4Upgrade
   class Gemfile
     RAILS_GEMS = Set.new(
       %w(actionmailer actionpack activemodel activerecord activesupport

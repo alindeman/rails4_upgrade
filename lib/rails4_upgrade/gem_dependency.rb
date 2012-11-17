@@ -1,4 +1,4 @@
-module RailsUpgrade4
+module Rails4Upgrade
   class GemDependency
     RAILS_GEMS = Set.new(
       %w(actionmailer actionpack activemodel activerecord activesupport

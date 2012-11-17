@@ -1,9 +1,9 @@
 require "spec_helper"
 
-describe RailsUpgrade4::Gemfile do
+describe Rails4Upgrade::Gemfile do
   context "with Devise, a gem that depends on Rails ~> 3.2" do
     let(:gemfile_path) { File.join(File.dirname(__FILE__), "fixtures", "gemfiles", "Gemfile_with_devise.lock") }
-    let(:gemfile) { RailsUpgrade4::Gemfile.new(File.open(gemfile_path)) }
+    let(:gemfile) { Rails4Upgrade::Gemfile.new(File.open(gemfile_path)) }
 
     it "lists the direct dependencies" do
       expect(gemfile.direct_dependencies.map(&:name)).to match_array(["devise"])
@@ -23,7 +23,7 @@ describe RailsUpgrade4::Gemfile do
 
   context "with Ransack, a gem that depends on a gem that depends on ActiveRecord ~> 3.0" do
     let(:gemfile_path) { File.join(File.dirname(__FILE__), "fixtures", "gemfiles", "Gemfile_with_ransack.lock") }
-    let(:gemfile) { RailsUpgrade4::Gemfile.new(File.open(gemfile_path)) }
+    let(:gemfile) { Rails4Upgrade::Gemfile.new(File.open(gemfile_path)) }
 
     it "lists incompatible gems" do
       expect(gemfile.incompatible_dependencies.map(&:name)).to match_array(["ransack"])

@@ -1,4 +1,4 @@
-module RailsUpgrade4
+module Rails4Upgrade
   class Incompatibility
     attr_reader :dependency, :dependency_chain
 
