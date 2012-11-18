@@ -19,6 +19,7 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency "bundler", ">=1.2.0"
 
+  gem.add_development_dependency "rake",     "~>10.0.0"
   gem.add_development_dependency "rspec",    "~>2.12.0"
   gem.add_development_dependency "vcr",      "~>2.3.0"
   gem.add_development_dependency "webmock",  "~>1.8.0"
