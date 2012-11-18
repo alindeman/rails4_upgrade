@@ -1,4 +1,4 @@
-namespace :upgrade do
+namespace :rails4 do
   desc "Check for gem incompatibilities with Rails 4"
   task :check_gems do
     gemfile_path = File.join(".", "Gemfile.lock")
