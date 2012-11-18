@@ -1,47 +1,34 @@
 require "spec_helper"
 
-describe Rails4Upgrade::Gemfile do
-  context "with Devise, a gem that depends on Rails ~> 3.2" do
+module Rails4Upgrade
+  describe Gemfile do
     let(:gemfile_path) { File.join(File.dirname(__FILE__), "fixtures", "gemfiles", "Gemfile_with_devise.lock") }
     let(:gemfile) { Rails4Upgrade::Gemfile.new(File.open(gemfile_path)) }
 
     it "lists the direct dependencies" do
-      expect(gemfile.direct_dependencies.map(&:name)).to match_array(["devise"])
+      devise = gemfile.dependencies[0]
+      expect(devise.name).to eq("devise")
+      expect(devise.version).to eq(::Gem::Version.new("2.1.2"))
+
+      rails = gemfile.dependencies[1]
+      expect(rails.name).to eq("rails")
+      expect(rails.version).to eq(::Gem::Version.new("3.2.8"))
     end
 
-    it "lists incompatible gems" do
-      expect(gemfile.incompatible_dependencies.map(&:name)).to match_array(["devise"])
+    it "returns the specific details about a given gem" do
+      bcrypt = gemfile["bcrypt-ruby"]
+      expect(bcrypt.name).to eq("bcrypt-ruby")
+      expect(bcrypt.version).to eq(::Gem::Version.new("3.0.1"))
     end
 
-    it "lists specific incompatibilities" do
-      devise = gemfile.incompatible_dependencies[0]
-
-      expect(devise.incompatibilities).to have(1).incompatibility
-      expect(devise.incompatibilities[0].dependency_chain.map(&:name)).to eq(["devise"])
-    end
-  end
-
-  context "with Ransack, a gem that depends on a gem that depends on ActiveRecord ~> 3.0" do
-    let(:gemfile_path) { File.join(File.dirname(__FILE__), "fixtures", "gemfiles", "Gemfile_with_ransack.lock") }
-    let(:gemfile) { Rails4Upgrade::Gemfile.new(File.open(gemfile_path)) }
-
-    it "lists incompatible gems" do
-      expect(gemfile.incompatible_dependencies.map(&:name)).to match_array(["ransack"])
-    end
-
-    it "lists specific incompatibilities" do
-      ransack = gemfile.incompatible_dependencies[0]
-
-      expect(ransack.incompatibilities).to have(3).incompatibilities
-
-      expect(ransack.incompatibilities[0].dependency_chain.map(&:name)).to eq(["ransack"])
-      expect(ransack.incompatibilities[0].gem.name).to eq("actionpack")
-
-      expect(ransack.incompatibilities[1].dependency_chain.map(&:name)).to eq(["ransack"])
-      expect(ransack.incompatibilities[1].gem.name).to eq("activerecord")
-
-      expect(ransack.incompatibilities[2].dependency_chain.map(&:name)).to eq(["ransack", "polyamorous"])
-      expect(ransack.incompatibilities[2].gem.name).to eq("activerecord")
+    it "lists the dependencies of a given gem" do
+      devise = gemfile["devise"]
+      expect(devise.dependencies).to match_array([
+        GemDependency.new("bcrypt-ruby",  "~> 3.0"),
+        GemDependency.new("orm_adapter",  "~> 0.1"),
+        GemDependency.new("railties",     "~> 3.1"),
+        GemDependency.new("warden",       "~> 1.2.1")
+      ])
     end
   end
 end

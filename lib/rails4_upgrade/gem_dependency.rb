@@ -1,32 +1,9 @@
 module Rails4Upgrade
-  class GemDependency
-    RAILS_GEMS = Set.new(
-      %w(actionmailer actionpack activemodel activerecord activesupport
-         railties activeresource)
-    )
+  class GemDependency < Struct.new(:name, :requirement)
+    def initialize(name, requirement)
+      requirement = requirement.is_a?(::Gem::Requirement) ? requirement : ::Gem::Requirement.new(requirement)
 
-    def initialize(dependency)
-      @dependency = dependency
-    end
-
-    def name
-      @dependency.name
-    end
-
-    def requirement
-      @dependency.requirement
-    end
-
-    def satisfied_by?(version)
-      @dependency.requirement.satisfied_by?(version)
-    end
-
-    def is_rails?
-      RAILS_GEMS.include?(name)
-    end
-
-    def satisfied_by_rails4?
-      satisfied_by?(::Gem::Version.new("4.0.0"))
+      super
     end
   end
 end
