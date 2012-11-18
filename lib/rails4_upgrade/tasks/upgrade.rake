@@ -3,8 +3,9 @@ namespace :upgrade do
   task :check_gems do
     gemfile_path = File.join(".", "Gemfile.lock")
     gemfile = Rails4Upgrade::Gemfile.new(File.open(gemfile_path))
+    incompatibile_gems = Rails4Upgrade::IncompatibleGems.new(gemfile)
 
-    terminal = Rails4Upgrade::Output::Terminal.new(gemfile)
-    terminal.output
+    formatter = Rails4Upgrade::Formatters::IncompatibleGemsFormatter.new(incompatibile_gems)
+    formatter.output
   end
 end
