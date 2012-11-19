@@ -1,4 +1,10 @@
 namespace :rails4 do
+  desc "Run through each precheck for compatibility with Rails 4"
+  task :check do
+    puts "** GEM COMPATIBILITY CHECK **"
+    Rake::Task["rails4:check_gems"].invoke
+  end
+
   desc "Check for gem incompatibilities with Rails 4"
   task :check_gems do
     gemfile_path = File.join(".", "Gemfile.lock")

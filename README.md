@@ -20,10 +20,12 @@ gem 'rails4_upgrade', github: 'alindeman/rails4_upgrade'
 
 ## Usage
 
-List gems that would currently prevent you from upgrading to Rails 4:
+Run `rake rails4:check`:
 
 ```
-$ rake rails4:check_gems
+$ rake rails4:check
+
+** GEM COMPATIBILITY CHECK **
 +--------------------+----------------------+
 | Dependency Path    | Rails Requirement    |
 +--------------------+----------------------+
