@@ -14,13 +14,25 @@ requires Ruby 1.9.3, and `rails4_upgrade` uses 1.9-only syntax and semantics.
 
 Add to `Gemfile`:
 
-    gem 'rails4_upgrade', github: 'alindeman/rails4_upgrade'
+```ruby
+gem 'rails4_upgrade', github: 'alindeman/rails4_upgrade'
+```
 
 ## Usage
 
 List gems that would currently prevent you from upgrading to Rails 4:
 
-    rake rails4:check_gems
+```
+$ rake rails4:check_gems
++--------------------+----------------------+
+| Dependency Path    | Rails Requirement    |
++--------------------+----------------------+
+| draper 0.18.0      | actionpack ~> 3.2    |
+| draper 0.18.0      | activesupport ~> 3.2 |
+| simple_form 2.0.4  | actionpack ~> 3.0    |
+| simple_form 2.0.4  | activemodel ~> 3.0   |
++--------------------+----------------------+
+```
 
 ## Contributing
 

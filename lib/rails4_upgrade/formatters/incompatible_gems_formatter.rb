@@ -1,3 +1,5 @@
+require "terminal-table"
+
 module Rails4Upgrade
   module Formatters
     class IncompatibleGemsFormatter
@@ -8,11 +10,20 @@ module Rails4Upgrade
       def output(stream = STDOUT)
         incompatibilities = @incompatible_gems.incompatibilities
         if incompatibilities.empty?
-          stream.puts colorize(:success, "No gem incompatibilities found")
+          stream.puts "No gem incompatibilities found"
         else
+          rows = []
           incompatibilities.each do |incompatibility|
-            stream.puts colorize(:failure, "#{human_readable_dependency_path(incompatibility.path)} depends on #{incompatibility.dependency.name} #{incompatibility.dependency.requirement}")
+            rows << [
+              human_readable_dependency_path(incompatibility.path),
+              human_readable_dependency(incompatibility.dependency)
+            ]
           end
+
+          stream.puts Terminal::Table.new(
+            headings: ["Dependency Path", "Rails Requirement"],
+            rows:     rows
+          )
         end
       end
 
@@ -22,13 +33,8 @@ module Rails4Upgrade
         path.map { |dependency| "#{dependency.name} #{dependency.version}" }.join(" -> ")
       end
 
-      def colorize(tag, string)
-        case tag
-        when :failure
-          "\e[31m#{string}\e[0m"
-        when :success
-          "\e[35m#{string}\e[0m"
-        end
+      def human_readable_dependency(dependency)
+        "#{dependency.name} #{dependency.requirement}"
       end
     end
   end
