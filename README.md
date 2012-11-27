@@ -7,6 +7,9 @@ contribute.
 Inspired by [rails_upgrade](https://github.com/rails/rails_upgrade) which
 helped upgrade applications from Rails 2 to Rails 3.
 
+Written in part to complement the book [Upgrading to Rails
+4](http://upgradingtorails4.com).
+
 ## Installation
 
 Upgrade to Ruby 1.9.3 if your application does not already use it. Rails 4
