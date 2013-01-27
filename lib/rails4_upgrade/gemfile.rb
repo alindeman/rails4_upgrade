@@ -22,7 +22,7 @@ module Rails4Upgrade
     def dependencies
       @dependencies ||= @lockfile.dependencies.map { |dependency|
         self[dependency.name]
-      }
+      }.compact
     end
 
     def [](gem_name)
