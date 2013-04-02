@@ -23,8 +23,10 @@ module Rails4Upgrade
           if !dependency.satisfied_by_rails4?
             incompatibilities << GemIncompatibility.new(dependency, dependency_path)
           end
-        elsif gem = @gemfile[dependency.name]
-          incompatibilities.concat(incompatibilities_for(gem, dependency_path))
+        elsif gem.name != dependency.name
+          if gem_dependency = @gemfile[dependency.name]
+            incompatibilities.concat(incompatibilities_for(gem_dependency, dependency_path))
+          end
         end
 
         incompatibilities

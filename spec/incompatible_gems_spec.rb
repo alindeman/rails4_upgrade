@@ -51,5 +51,16 @@ module Rails4Upgrade
         expect(incompatibilities[2].path[1].name).to eq("polyamorous")
       end
     end
+
+    context "with a Gemfile that has a recursive dependency" do
+      let(:gemfile_path) { File.join(File.dirname(__FILE__), "fixtures", "gemfiles", "Gemfile_with_recursive_dependency.lock") }
+      let(:gemfile) { Rails4Upgrade::Gemfile.new(File.open(gemfile_path)) }
+      subject(:incompatible_gems) { IncompatibleGems.new(gemfile) }
+
+      it "lists incompatibilities" do
+        incompatibilities = incompatible_gems.incompatibilities
+        expect(incompatibilities.size).to eq(0)
+      end
+    end
   end
 end
