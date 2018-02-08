@@ -1,11 +1,12 @@
 require "set"
 require "rails4_upgrade/gem_dependency"
 require "rails4_upgrade/gem"
+require "rails4_upgrade/lockfile"
 
 module Rails4Upgrade
   class Gemfile
     def initialize(lockfile_io)
-      @lockfile = Bundler::LockfileParser.new(lockfile_io.read)
+      @lockfile = Lockfile.new(lockfile_io.read)
 
       @gems = Hash[@lockfile.specs.map { |spec|
         [
